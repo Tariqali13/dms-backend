@@ -47,7 +47,7 @@ Ensure the following dependencies are installed on your system:
 ### Environment Variables
 Create a `.env` file in the project root directory with the following configuration:
 
-```env
+```plaintext
 # Currency Exchange API
 EXCHANGE_RATE_API_KEY=<Your-Exchange-Rate-API-Key>
 EXCHANGE_RATE_API_URL=https://api.exchangerate-api.com/v6
@@ -64,103 +64,72 @@ MONGO_URI=mongodb://localhost:27017/wallet
 
 # Redis URL
 REDIS_URL=redis://localhost:6379
-Database Setup
-PostgreSQL
-Install PostgreSQL:
+```
 
-MacOS: brew install postgresql
-Ubuntu/Debian:
-bash
-Copy code
-sudo apt-get update
-sudo apt-get install postgresql postgresql-contrib
-Windows: Download PostgreSQL installer
-Create Database:
+### Database Setup
 
-sql
-Copy code
-CREATE DATABASE wallet_db;
-Ensure PostgreSQL is running.
+#PostgreSQL
+- **Install PostgreSQL**:
+- **MacOS**:
+    - brew install postgresql
+- **Ubuntu/Debian**:
+    - sudo apt-get update
+    - sudo apt-get install postgresql postgresql-contrib
+- **Windows**:
+    - Download PostgreSQL installer
 
-MongoDB
-Install MongoDB:
+### Create Database:
+- **sql**: 
+    - CREATE DATABASE wallet_db;
+**Ensure PostgreSQL is running**
 
-MacOS: brew tap mongodb/brew && brew install mongodb-community@6.0
-Ubuntu/Debian:
-bash
-Copy code
-sudo apt-get update
-sudo apt-get install -y mongodb-org
-Windows: Download MongoDB installer
-Start MongoDB Service:
+- **MongoDB**
+    - Install MongoDB:
 
-bash
-Copy code
-sudo service mongod start
-Verify MongoDB is running.
+- **MacOS**:
+    - brew tap mongodb/brew && brew install mongodb-community@6.0
+- **Ubuntu/Debian**:
+    - sudo apt-get update
+    - sudo apt-get install -y mongodb-org
+- **Windows**:
+    - Download MongoDB installer
 
-Redis
-Install Redis:
+**Start MongoDB Service:**
+- sudo service mongod start
 
-MacOS: brew install redis
-Ubuntu/Debian:
-bash
-Copy code
-sudo apt-get install redis-server
-Windows: Install Redis for Windows
-Start Redis Server:
+**Verify MongoDB is running.**
 
-bash
-Copy code
-redis-server
-Verify Redis is running.
+- **Redis**
+    - Install Redis:
+- **MacOS**:
+    - brew install redis
+- **Ubuntu/Debian**:
+    - sudo apt-get install redis-server
+- **Windows**:
+    - Install Redis for Windows
 
-Installation
+- **Start Redis Server**
+    - redis-server
+**Verify Redis is running.**
+
+### Installation
 Once all services are up and running:
 
-Clone the repository:
-
-bash
-Copy code
-git clone https://github.com/<your-repo>/dms-backend.git
-cd dms-backend
-Install dependencies:
-
-bash
-Copy code
+- Clone the repository:
+- git clone https://github.com/<your-repo>/dms-backend.git
+- cd dms-backend
+- Install dependencies:
+``` plaintext
 npm install
-Running the App
-Development Mode
-bash
-Copy code
-npm run start:dev
-Production Mode
-bash
-Copy code
-npm run start:prod
-Testing
-Run unit and e2e tests:
 
-bash
-Copy code
-# Unit tests
-npm run test
+Running the App:
 
-# End-to-end tests
-npm run test:e2e
+Development Mode: npm run start:dev
+Production Mode: npm run start:prod
+```
 
-# Test coverage
-npm run test:cov
-Support
 This is an MIT-licensed open-source project. Contributions, issues, and feature requests are welcome!
 
-Author: Tariq Ali
-Twitter: @nestjsframework
-Website: nestjs.com
-License
+### Author: Tariq Ali
+### License
 This project is licensed under the MIT License.
-
-vbnet
-Copy code
-
-You can copy this markdown content directly into your `README.md` file, and it will render beautifully on GitHub. Let me know if you need any further modifications!
