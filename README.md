@@ -1,174 +1,166 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank">
-    <img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" />
-  </a>
-</p>
+# DMS Backend
 
-<p align="center">
-  A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.
-</p>
-
-<p align="center">
-  <a href="https://circleci.com/gh/nestjs/nest" target="_blank">
-    <img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" />
-  </a>
-  <a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank">
-    <img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" />
-  </a>
-  <a href="https://discord.gg/G7Qnnhy" target="_blank">
-    <img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/>
-  </a>
-  <a href="https://opencollective.com/nest#backer" target="_blank">
-    <img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" />
-  </a>
-  <a href="https://opencollective.com/nest#sponsor" target="_blank">
-    <img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" />
-  </a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank">
-    <img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/>
-  </a>
-  <a href="https://opencollective.com/nest#sponsor"  target="_blank">
-    <img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"/>
-  </a>
-  <a href="https://twitter.com/nestframework" target="_blank">
-    <img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"/>
-  </a>
-</p>
+A **progressive backend framework** built with **Node.js** and **TypeScript**, designed for efficient and scalable server-side applications. This repository provides a starting point for applications interacting with **PostgreSQL**, **MongoDB**, **Redis**, and an external **currency exchange API**.
 
 ---
 
-## Description
+## Table of Contents
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Setup Instructions](#setup-instructions)
+  - [Environment Variables](#environment-variables)
+  - [Database Setup](#database-setup)
+    - [PostgreSQL](#postgresql)
+    - [MongoDB](#mongodb)
+    - [Redis](#redis)
+- [Installation](#installation)
+- [Running the App](#running-the-app)
+- [Testing](#testing)
+- [Support](#support)
+- [License](#license)
 
-This is a [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository. It demonstrates a sample server-side application that interacts with PostgreSQL, MongoDB, Redis, and an external currency exchange API.
+---
+
+## Features
+- Built with **Nest.js**, a progressive Node.js framework.
+- Integration with:
+  - PostgreSQL for relational database management.
+  - MongoDB for NoSQL database operations.
+  - Redis for caching and session storage.
+  - An external **currency exchange API**.
+- Scalable, type-safe, and production-ready.
+
+---
 
 ## Prerequisites
+Ensure the following dependencies are installed on your system:
+- **Node.js** (v14.x or later recommended)
+- **npm** (or **yarn**, if preferred)
+- **PostgreSQL** (installed and running)
+- **MongoDB** (installed and running)
+- **Redis** (installed and running or hosted)
 
-- **Node.js** (>= 14.x recommended)
-- **npm** (or **yarn**, if you prefer)
-- **PostgreSQL** installed and running
-- **MongoDB** installed and running
-- **Redis** installed and running (or a hosted Redis URL)
+---
 
-## Environment Variables
+## Setup Instructions
 
-Before running the application, you must create a `.env` file in the root directory with the following keys (and your own values where appropriate):
+### Environment Variables
+Create a `.env` file in the project root directory with the following configuration:
 
-```bash
-# .env
+```env
+# Currency Exchange API
+EXCHANGE_RATE_API_KEY=<Your-Exchange-Rate-API-Key>
+EXCHANGE_RATE_API_URL=https://api.exchangerate-api.com/v6
 
-EXCHANGE_RATE_API_KEY=8cc536b01c3cdadcc3fff8a6
-EXCHANGE_RATE_BASE_URL=https://v6.exchangerate-api.com/v6
-
-# -- Postgres Settings --
+# PostgreSQL Configuration
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
 POSTGRES_USER=postgres
-POSTGRES_PASSWORD=123
+POSTGRES_PASSWORD=<Your-Postgres-Password>
 POSTGRES_DB=wallet_db
 
-# -- MongoDB Settings --
+# MongoDB URI
 MONGO_URI=mongodb://localhost:27017/wallet
 
-# -- Redis Settings --
+# Redis URL
 REDIS_URL=redis://localhost:6379
+Database Setup
+PostgreSQL
+Install PostgreSQL:
 
-Note: You can rename .env to whatever you like (e.g., .env.development) as long as your NestJS ConfigModule.forRoot() is configured accordingly, but .env is the default.
-
-Setting up PostgreSQL
-Install PostgreSQL if you haven’t already:
-
-Mac (Homebrew): brew install postgresql
-Ubuntu/Debian: sudo apt-get update && sudo apt-get install postgresql postgresql-contrib
-Windows: Download Installer
-Start PostgreSQL and make sure it’s running.
-
-Create a database (if not already created). For example:
-
+MacOS: brew install postgresql
+Ubuntu/Debian:
 bash
 Copy code
-psql -U postgres
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+Windows: Download PostgreSQL installer
+Create Database:
+
+sql
+Copy code
 CREATE DATABASE wallet_db;
-Check your .env matches your local DB settings:
+Ensure PostgreSQL is running.
 
-POSTGRES_HOST=localhost
-POSTGRES_PORT=5432
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=123
-POSTGRES_DB=wallet_db
-Setting up MongoDB
-Install MongoDB if you haven’t already:
+MongoDB
+Install MongoDB:
 
-Mac (Homebrew):
-bash
-Copy code
-brew tap mongodb/brew
-brew install mongodb-community@6.0
+MacOS: brew tap mongodb/brew && brew install mongodb-community@6.0
 Ubuntu/Debian:
 bash
 Copy code
 sudo apt-get update
 sudo apt-get install -y mongodb-org
-Windows: Download Installer
-Start MongoDB. For example:
+Windows: Download MongoDB installer
+Start MongoDB Service:
 
 bash
 Copy code
 sudo service mongod start
-Check that MongoDB is running:
+Verify MongoDB is running.
 
+Redis
+Install Redis:
+
+MacOS: brew install redis
+Ubuntu/Debian:
 bash
 Copy code
-mongo
-You should see the MongoDB shell if everything is up.
+sudo apt-get install redis-server
+Windows: Install Redis for Windows
+Start Redis Server:
 
-Ensure your .env has the correct URI:
-
-MONGO_URI=mongodb://localhost:27017/wallet
-Setting up Redis
-Install Redis:
-Mac (Homebrew): brew install redis
-Ubuntu/Debian: sudo apt-get install redis-server
-Windows: Use WSL, Docker, or a third-party build.
-Start Redis. For example:
 bash
 Copy code
 redis-server
-Check your .env:
-REDIS_URL=redis://localhost:6379
+Verify Redis is running.
+
 Installation
-Once you have the services up and running, install all dependencies:
+Once all services are up and running:
+
+Clone the repository:
+
+bash
+Copy code
+git clone https://github.com/<your-repo>/dms-backend.git
+cd dms-backend
+Install dependencies:
 
 bash
 Copy code
 npm install
-Running the app
+Running the App
+Development Mode
 bash
 Copy code
-# development
-npm run start
-
-# watch mode (development hot-reload)
 npm run start:dev
-
-# production mode (compiled)
-npm run start:prod
-Test
+Production Mode
 bash
 Copy code
-# unit tests
+npm run start:prod
+Testing
+Run unit and e2e tests:
+
+bash
+Copy code
+# Unit tests
 npm run test
 
-# e2e tests
+# End-to-end tests
 npm run test:e2e
 
-# test coverage
+# Test coverage
 npm run test:cov
 Support
-Nest is an MIT-licensed open source project. It can grow thanks to sponsors and support by the amazing backers. If you’d like to join them, please read more here.
+This is an MIT-licensed open-source project. Contributions, issues, and feature requests are welcome!
 
-Stay in Touch
-Author - Kamil Myśliwiec
-Website - https://nestjs.com
-Twitter - @nestframework
+Author: Tariq Ali
+Twitter: @nestjsframework
+Website: nestjs.com
 License
-Nest is MIT licensed.
+This project is licensed under the MIT License.
+
+vbnet
+Copy code
+
+You can copy this markdown content directly into your `README.md` file, and it will render beautifully on GitHub. Let me know if you need any further modifications!
