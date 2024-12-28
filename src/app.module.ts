@@ -7,6 +7,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { RedisModule } from '@nestjs-modules/ioredis';
 import { CurrencyModule } from './currency/currency.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AdminSeeder } from './seeder/admin.seeder';
+import { User } from './auth/entities/user.entity';
 
 @Module({
   imports: [
@@ -18,6 +20,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     WalletModule,
     TransactionModule,
     CurrencyModule,
+    TypeOrmModule.forFeature([User]), // Ensure User entity is registered
+
     // Use TypeOrmModule.forRootAsync so that we can inject ConfigService
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -52,5 +56,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
     }),
   ],
+  providers: [AdminSeeder],
 })
 export class AppModule { }
