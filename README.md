@@ -42,6 +42,11 @@ Ensure the following dependencies are installed on your system:
 
 ---
 
+
+## Admin Credentials
+- Email:  admin@dms.com
+- Password: admin123
+
 ## Setup Instructions
 
 ### Environment Variables
